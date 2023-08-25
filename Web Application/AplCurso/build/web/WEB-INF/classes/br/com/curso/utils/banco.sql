@@ -20,3 +20,15 @@ INSERT INTO cidade (nomecidade, situacao, idestado) VALUES
     ('Salvador', 'A', 1),
     ('Belo Horizonte', 'I', 1),
     ('Porto Alegre', 'I', 1);
+
+create table despesa(
+    iddespesa serial primary key,
+    descricao varchar (100) not null,
+    datadocumento date not null,
+    valordespesa numeric(15,2) not null,
+    valorpago numeric(15,2),
+    imagemdocumento text
+);
+
+INSERT into despesa(descricao,datadocumento,valordespesa,valorpago)
+values ('descricao','2021-08-23',20.5,10.5);

@@ -22,7 +22,7 @@
                     <span>início</span></a>
             </li>
 
-            <!-- Divider -->
+            <!-- //sidebar .nav-item .nav-link[data-toggle=collapse]::after -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
@@ -34,38 +34,20 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                   
                     <span>Cadastros</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Cadastros Primarios:</h6>
                         <a class="collapse-item" href="${pageContext.request.contextPath}/EstadoListar">Estado</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/CidadeListar">Cidade</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/ProdutoListar">Produto</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/CidadeListar">Cidade</a>         
+                        <a class="collapse-item" href ="${pageContext.request.contextPath}/DespesaListar">Despesa</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Movimentos</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Lançamentos</h6>
-                        <a class="collapse-item" href="utilities-color.html">Despesa</a>
-                        <a class="collapse-item" href="utilities-border.html">Contas a Pagar</a>
-                        <a class="collapse-item" href="utilities-animation.html">Contas a Receber</a>
-                        <a class="collapse-item" href="utilities-other.html">Movimentação Bancaria</a>
-                    </div>
-                </div>
-            </li>
-
+   
             <!-- Divider -->
             <hr class="sidebar-divider">
 

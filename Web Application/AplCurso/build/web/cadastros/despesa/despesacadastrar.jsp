@@ -139,7 +139,7 @@
                 icon: 'error',
                 title: 'Verifique a descrição da despesa',
                 showConfimButton: false,
-                timer: 1000
+                timer: 5000
             })
             $("#descricao").focus();
         }else if(document.getElementById("datadocumento").value == ''){
@@ -148,7 +148,7 @@
                 icon: 'error',
                 title: 'Verifique a Data da despesa',
                 showConfimButton: false,
-                timer: 1000
+                timer: 5000
             })
             $("#datadocumento").focus();
         }else if(document.getElementById("valordespesa").value == ''){
@@ -157,7 +157,7 @@
                 icon: 'error',
                 title: 'Verifique o Valor da despesa',
                 showConfimButton: false,
-                timer: 1000
+                timer: 5000
             })
             $("#valordespesa").focus();
         }else{
@@ -190,7 +190,7 @@
                                 title: 'Sucesso',
                                 text: 'Despesa gravada com Sucesso',
                                 showConfimButton: false,
-                                timer: 1000
+                                timer: 5000
                             })
                         }else{
                             Swal.fire({
@@ -199,7 +199,7 @@
                                 title: 'Erro',
                                 text: 'Não foi possível gravar a Despesa',
                                 showConfimButton: false,
-                                timer: 1000
+                                timer: 5000
                             })
                         }
                         window.location.href = "${pageContext.request.contextPath}/DespesaListar";

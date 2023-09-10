@@ -1,16 +1,8 @@
 package br.com.curso.model;
-
 public class Estado {
-    
     private int idEstado;
     private String nomeEstado;
     private String siglaEstado;
-
-    public Estado() {
-        this.idEstado = 0;
-        this.nomeEstado ="";
-        this.siglaEstado ="";
-    }
 
     public Estado(int idEstado, String nomeEstado, String siglaEstado) {
         this.idEstado = idEstado;
@@ -41,4 +33,11 @@ public class Estado {
     public void setSiglaEstado(String siglaEstado) {
         this.siglaEstado = siglaEstado;
     }
+// overlold e criação de metodos iguais so que com asinatura diferentes; classe unica 
+    public Estado() {
+        this.idEstado = 0;
+        this.nomeEstado = "";
+        this.siglaEstado ="";
+    }
+    
 }

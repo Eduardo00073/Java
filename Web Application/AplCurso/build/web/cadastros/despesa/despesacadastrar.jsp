@@ -1,6 +1,23 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="iso-8859-1" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Despesas</title>
+    <!-- Adicione os links para os arquivos CSS e JavaScript do Bootstrap aqui -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLR9D3H+oG5D6j5MI4lp2x9Qk5CtFkTgny5g3a5zT5B" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-4GT1Z2F5zn6fZLzz5x1f1s5/I5I5M6f5B5F5B5F5B5J5Sryd/T5xljh2KtuT5Ktu6B5" crossorigin="anonymous"></script>
+    <!-- Adicione o link para o arquivo jQuery aqui -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLR9D3H+oG5D6j5MI4lp2x9Qk5CtFkTgny5g3a5zT5B" crossorigin="anonymous"></script>
+    <!-- Adicione o link para o arquivo SweetAlert CSS aqui -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+    <!-- Adicione o link para o arquivo SweetAlert JavaScript aqui -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>
+</head>
+<body>
 <jsp:include page="/header.jsp"/>
 <jsp:include page="/menu.jsp"/>
 
@@ -69,6 +86,8 @@
             </div>
         </div>                    
     </div>
+</div>
+
 <style type="text/css">
     .inputfile{
         width: 0.1px;
@@ -139,7 +158,7 @@
                 icon: 'error',
                 title: 'Verifique a descrição da despesa',
                 showConfimButton: false,
-                timer: 5000
+                timer: 1000
             })
             $("#descricao").focus();
         }else if(document.getElementById("datadocumento").value == ''){
@@ -148,7 +167,7 @@
                 icon: 'error',
                 title: 'Verifique a Data da despesa',
                 showConfimButton: false,
-                timer: 5000
+                timer: 1000
             })
             $("#datadocumento").focus();
         }else if(document.getElementById("valordespesa").value == ''){
@@ -157,7 +176,7 @@
                 icon: 'error',
                 title: 'Verifique o Valor da despesa',
                 showConfimButton: false,
-                timer: 5000
+                timer: 1000
             })
             $("#valordespesa").focus();
         }else{
@@ -190,8 +209,10 @@
                                 title: 'Sucesso',
                                 text: 'Despesa gravada com Sucesso',
                                 showConfimButton: false,
-                                timer: 5000
-                            })
+                                timer: 1000
+                            }).then(()=>{
+                                        window.location.href="${pageContext.request.contextPath}/DespesaListar";
+                                    })
                         }else{
                             Swal.fire({
                                 position: 'center',
@@ -199,10 +220,12 @@
                                 title: 'Erro',
                                 text: 'Não foi possível gravar a Despesa',
                                 showConfimButton: false,
-                                timer: 5000
-                            })
+                                timer: 1000
+                            }).then(()=>{
+                                        window.location.href="${pageContext.request.contextPath}/DespesaListar";
+                                    })
                         }
-                        window.location.href = "${pageContext.request.contextPath}/DespesaListar";
+                        
                     },
             error:
                 function (data){
@@ -227,4 +250,6 @@
         }
     }
 </script>
+
+
 <%@include file ="/footer.jsp" %>                           

@@ -10,25 +10,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 @WebServlet(name = "CidadeExcluir", urlPatterns = {"/CidadeExcluir"})
 public class CidadeExcluir extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=iso-8859-1");
+        response.setContentType("text/html;charset=UTF-8");
         int idCidade = Integer.parseInt(request.getParameter("idCidade"));
         String mensagem = null;
-        try {
+        
+        try{
             GenericDAO dao = new CidadeDAO();
-            if (dao.excluir(idCidade)) {
-                mensagem = "Cidade excluido com Sucesso!";
-            } else {
-                mensagem = "Problemas ao excluir Cidade";
+            if (dao.excluit(idCidade)) {
+                response.getWriter().write("1");
+            }else{
+                response.getWriter().write("0");
             }
-            request.setAttribute("mensagem", mensagem);            
-            response.sendRedirect("CidadeListar");
-        } catch (Exception ex) {
-            System.out.println("Problemas no Servelet ao excluir Cidade! Erro: "+ ex.getMessage());
+        }catch(Exception ex){
+            System.out.println("Problemas no Servlet Cidade Excluir! Erro: "+ex.getMessage());
             ex.printStackTrace();
         }
     }

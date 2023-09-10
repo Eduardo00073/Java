@@ -12,7 +12,7 @@
         <meta name="author" content="">
 
 
-        <title>AplCurso</title>
+        <title>Sistema Teste de Aula</title>
         
         <!-- JQuery -->
         <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js" type="text/javascript"></script>

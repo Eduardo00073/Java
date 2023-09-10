@@ -1,3 +1,4 @@
+
 package br.com.curso.controller.despesa;
 
 import br.com.curso.dao.DespesaDAO;
@@ -12,10 +13,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 @WebServlet(name = "DespesaCadastrar", urlPatterns = {"/DespesaCadastrar"})
 public class DespesaCadastrar extends HttpServlet {
 
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=iso-8859-1");
@@ -27,7 +37,7 @@ public class DespesaCadastrar extends HttpServlet {
             oDespesa.setValordespesa(Conversao.valorDinheiro(request.getParameter("valordespesa")));
             oDespesa.setValorpago(Conversao.valorDinheiro(request.getParameter("valorpago")));
             oDespesa.setDatadocumento(Date.valueOf(request.getParameter("datadocumento")));
-            oDespesa.setImagemdocumento(request.getParameter("imagemdocumento"));
+            oDespesa.setImagemdocumento(request.getParameter("imagempagamento"));
             DespesaDAO dao = new DespesaDAO();
             
             if(dao.cadastrar(oDespesa)){

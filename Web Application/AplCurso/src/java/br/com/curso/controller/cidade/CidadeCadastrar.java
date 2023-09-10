@@ -15,35 +15,42 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "CidadeCadastrar", urlPatterns = {"/CidadeCadastrar"})
 public class CidadeCadastrar extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=iso-8859-1");
-        int idCidade = Integer.parseInt(request.getParameter("idcidade"));
+        response.setContentType("text/html;charset=UTF-8");
+        int idCidade = Integer.parseInt(request.getParameter("idCidade"));
         int idEstado = Integer.parseInt(request.getParameter("idestado"));
-        String nomeCidade = request.getParameter("nomecidade");
+        String nomecidade = request.getParameter("nomeCidade");
         String situacao = request.getParameter("situacao");
         String mensagem = null;
-
+        
         try{
-            
             Cidade oCidade = new Cidade();
             oCidade.setIdCidade(idCidade);
-            oCidade.setNomeCidade(nomeCidade);
+            oCidade.setNomeCidade(nomecidade);
             oCidade.setSituacao(situacao);
             oCidade.setEstado(new Estado(idEstado,"",""));
             
             GenericDAO dao = new CidadeDAO();
-            if (dao.cadastrar(oCidade)){
-                mensagem = "Cidade cadastrado com sucesso!";                
-            } else {
-                mensagem = "Problemas ao cadastrar Cidade.Verifique os dados informados e tente novamente!";
+            if (dao.cadastrar(oCidade)) {
+                response.getWriter().write("1");
+            }else{
+                response.getWriter().write("0");
             }
-            request.setAttribute("mensagem", mensagem);
-            response.sendRedirect("CidadeListar");
-        } catch (Exception ex){
-             System.out.println("Problemas no Servlet ao cadastrar Cidade! Erro: " + ex.getMessage());
-             ex.printStackTrace();
+        }catch(Exception ex){
+            System.out.println("Problemas no servlet CadastrarCidade! Erro: " + ex.getMessage());
+            ex.printStackTrace();
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -2,7 +2,6 @@ package br.com.curso.controller.cidade;
 
 import br.com.curso.dao.CidadeDAO;
 import br.com.curso.dao.EstadoDAO;
-import br.com.curso.model.Cidade;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -11,26 +10,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 @WebServlet(name = "CidadeCarregar", urlPatterns = {"/CidadeCarregar"})
 public class CidadeCarregar extends HttpServlet {
 
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=iso-8859-1");
-        try {
+        response.setContentType("text/html;charset=UTF-8");
+        try{
             int idCidade = Integer.parseInt(request.getParameter("idCidade"));
-            //Cria objeto de CidadeDAO - camada dao
             CidadeDAO oCidadeDAO = new CidadeDAO();
-            //cria variavel no servidor para armazenar objeto de Cidade com os dados carregados
             request.setAttribute("cidade", oCidadeDAO.carregar(idCidade));
-            //busca uma lista de estados para alimentar a caixa de seleção na view (jsp)
             EstadoDAO oEstadoDAO = new EstadoDAO();
             request.setAttribute("estados", oEstadoDAO.listar());
-            //dispacha os objetos de cidade e a lista de estados para a pagina jsp
+            
             request.getRequestDispatcher("/cadastros/cidade/cidadeCadastrar.jsp").forward(request, response);
-        } catch (Exception ex){
-            System.out.println("Erro carregar cidade "+ex.getMessage());
+        }catch(Exception ex){
+            System.out.println("Erro ao carregar cidade " + ex.getMessage());
             ex.printStackTrace();
         }
     }

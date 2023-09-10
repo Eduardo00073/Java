@@ -11,23 +11,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DespesaDAO implements GenericDAO {
+public class DespesaDAO implements GenericDAO{
 
     private Connection conexao;
-
-    public DespesaDAO() throws Exception {
+    
+    public DespesaDAO()throws Exception{
         conexao = SingleConnection.getConnection();
-
     }
-
+    
     @Override
     public Boolean cadastrar(Object objeto) {
         Despesa oDespesa = (Despesa) objeto;
         boolean retorno = false;
-        if (oDespesa.getIddespesa() == 0) {
+        if(oDespesa.getIddespesa() == 0){
             retorno = inserir(oDespesa);
-        } else {
-            retorno = alterar(oDespesa);
+        }else{
+            retorno =  alterar(oDespesa);
         }
         return retorno;
     }
@@ -38,29 +37,28 @@ public class DespesaDAO implements GenericDAO {
         PreparedStatement stmt = null;
         String sql = "insert into despesa (descricao, valordespesa, valorpago, datadocumento,"
                 + "imagemdocumento) values (?,?,?,?,?)";
-
-        try {
+        
+        try{
             stmt = conexao.prepareStatement(sql);
             stmt.setString(1, oDespesa.getDescricao());
             stmt.setDouble(2, oDespesa.getValordespesa());
             stmt.setDouble(3, oDespesa.getValorpago());
-            stmt.setDate(4, new java.sql.Date(oDespesa.getDatadocumento().getTime()));
+            stmt.setDate(4,new java.sql.Date(oDespesa.getDatadocumento().getTime()));
             stmt.setString(5, oDespesa.getImagemdocumento());
             stmt.execute();
             conexao.commit();
             return true;
-        } catch (Exception e) {
-            try {
+        }catch(Exception e){
+            try{
                 System.out.println("Problemas ao cadastrar Despesa ! Erro: " + e.getMessage());
                 e.printStackTrace();
                 conexao.rollback();
-            } catch (SQLException ex) {
+            }catch(SQLException ex){
                 System.out.println("Problemas ao executar rollback! " + ex.getMessage());
                 ex.printStackTrace();
             }
             return false;
         }
-
     }
 
     @Override
@@ -69,49 +67,48 @@ public class DespesaDAO implements GenericDAO {
         PreparedStatement stmt = null;
         String sql = "update despesa set descricao=?, valordespesa=?, valorpago=?, datadocumento=?, imagemdocumento=?"
                 + "where iddespesa=?";
-
-        try {
+        
+        try{
             stmt = conexao.prepareStatement(sql);
             stmt.setString(1, oDespesa.getDescricao());
             stmt.setDouble(2, oDespesa.getValordespesa());
             stmt.setDouble(3, oDespesa.getValorpago());
-            stmt.setDate(4, new java.sql.Date(oDespesa.getDatadocumento().getTime()));
+            stmt.setDate(4,new java.sql.Date(oDespesa.getDatadocumento().getTime()));
             stmt.setString(5, oDespesa.getImagemdocumento());
             stmt.setInt(6, oDespesa.getIddespesa());
             stmt.execute();
             conexao.commit();
             return true;
-        } catch (Exception e) {
-            try {
+        }catch(Exception e){
+            try{
                 System.out.println("Problemas ao alterar Despesa ! Erro: " + e.getMessage());
                 e.printStackTrace();
                 conexao.rollback();
-            } catch (SQLException ex) {
+            }catch(SQLException ex){
                 System.out.println("Problemas ao executar rollback! " + ex.getMessage());
                 ex.printStackTrace();
             }
             return false;
         }
-
     }
 
     @Override
-    public Boolean excluir(int numero) {
+    public Boolean excluit(int numero) {
         int iddespesa = numero;
         PreparedStatement stmt = null;
         String sql = "delete from despesa where iddespesa=?";
-        try {
+        try{
             stmt = conexao.prepareStatement(sql);
             stmt.setInt(1, iddespesa);
             stmt.execute();
             conexao.commit();
             return true;
-        } catch (Exception e) {
-            try {
+        }catch(Exception e){
+            try{
                 System.out.println("Problemas ao excluir Despesa! Erro: " + e.getMessage());
                 e.printStackTrace();
                 conexao.rollback();
-            } catch (SQLException ex) {
+            }catch(SQLException ex){
                 System.out.println("Problemas ao executar rollback" + ex.getMessage());
                 ex.printStackTrace();
             }
@@ -126,11 +123,11 @@ public class DespesaDAO implements GenericDAO {
         ResultSet rs = null;
         Despesa oDespesa = null;
         String sql = "select * from despesa where iddespesa=?";
-        try {
+        try{
             stmt = conexao.prepareStatement(sql);
             stmt.setInt(1, iddespesa);
             rs = stmt.executeQuery();
-            while (rs.next()) {
+            while(rs.next()){
                 oDespesa = new Despesa();
                 oDespesa.setIddespesa(rs.getInt("iddespesa"));
                 oDespesa.setDescricao(rs.getString("descricao"));
@@ -139,7 +136,7 @@ public class DespesaDAO implements GenericDAO {
                 oDespesa.setDatadocumento(rs.getDate("datadocumento"));
                 oDespesa.setImagemdocumento(rs.getString("imagemdocumento"));
             }
-        } catch (Exception e) {
+        }catch(Exception e){
             System.out.println("Problemas ao carregar despesa! Erro " + e.getMessage());
             e.printStackTrace();
         }
@@ -153,10 +150,10 @@ public class DespesaDAO implements GenericDAO {
         List<Object> resultado = new ArrayList<>();
         Despesa oDespesa = null;
         String sql = "select * from despesa";
-        try {
+        try{
             stmt = conexao.prepareStatement(sql);
             rs = stmt.executeQuery();
-            while (rs.next()) {
+            while(rs.next()){
                 oDespesa = new Despesa();
                 oDespesa.setDescricao(rs.getString("descricao"));
                 oDespesa.setIddespesa(rs.getInt("iddespesa"));
@@ -166,42 +163,41 @@ public class DespesaDAO implements GenericDAO {
                 oDespesa.setImagemdocumento(rs.getString("imagemdocumento"));
                 resultado.add(oDespesa);
             }
-        } catch (Exception e) {
+        }catch(Exception e){
             System.out.println("Problemas ao Listar Despesa! Erro: " + e.getMessage());
             e.printStackTrace();
         }
         return resultado;
     }
-
-    public String listarJSON() {
-        String strJson = "";
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        List<Object> resultado = new ArrayList<>();
-        Despesa oDespesa = null;
-        String sql = "select * from despesa";
-        try {
-            stmt = conexao.prepareStatement(sql);
-            rs = stmt.executeQuery();
-            strJson = "[";
-            int i = 0;
-            while (rs.next()) {
-                if (i > 0) {
-                    strJson += ",";
+    
+     public String listarJSON(){
+            String strJson = "";
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            List<Object> resultado = new ArrayList<>();
+            Despesa oDespesa = null;
+            String sql = "select * from despesa";
+            try{
+                stmt = conexao.prepareStatement(sql);
+                rs = stmt.executeQuery();
+                strJson = "[";
+                int i = 0;
+                while(rs.next()){
+                    if(i>0) strJson+=",";
+                    strJson += "{\"iddespesa\":"+rs.getInt("iddespesa")+","
+                            + "\"descricao\":\""+rs.getString("descricao")+"\","
+                            + "\"datadocumento\":\""+data2String(rs.getDate("datadocumento"))+"\","
+                            + "\"valordespesa\":\""+valorDinheiro(rs.getDouble("valordespesa"), "BR")+"\","
+                            + "\"valorpago\":\""+valorDinheiro(rs.getDouble("valorpago"), "BR")+"\"}";
+                    i++;
                 }
-                strJson += "{\"iddespesa\":" + rs.getInt("iddespesa") + ","
-                        + "\"descricao\":\"" + rs.getString("descricao") + "\","
-                        + "\"datadocumento\":\"" + data2String(rs.getDate("datadocumento")) + "\","
-                        + "\"valordespesa\":\"" + valorDinheiro(rs.getDouble("valordespesa"), "BR") + "\","
-                        + "\"valorpago\":\"" + valorDinheiro(rs.getDouble("valorpago"), "BR") + "\"}";
-                i++;
+                strJson+="]";
+            }catch(Exception e){
+                System.out.println("Problemas ao listar despesa! Erro: " + e.getMessage());
+                e.printStackTrace();
             }
-            strJson += "]";
-        } catch (Exception e) {
-            System.out.println("Problemas ao listar despesa! Erro: " + e.getMessage());
-            e.printStackTrace();
-        }
-        System.out.println(strJson);
-        return strJson;
+            System.out.println(strJson);
+            return strJson;
     }
+        
 }

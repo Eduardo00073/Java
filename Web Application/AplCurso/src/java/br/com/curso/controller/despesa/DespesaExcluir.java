@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "DespesaExcluir", urlPatterns = {"/DespesaExcluir"})
 public class DespesaExcluir extends HttpServlet {
 
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=iso-8859-1");
@@ -21,7 +22,7 @@ public class DespesaExcluir extends HttpServlet {
         String msg = null;
         try{
             GenericDAO dao = new DespesaDAO();
-            if(dao.excluir(iddespesa)){
+            if(dao.excluit(iddespesa)){
                 response.getWriter().write("1");
             }else{
                 response.getWriter().write("0");

@@ -1,3 +1,4 @@
+
 package br.com.curso.utils;
 
 import java.text.NumberFormat;
@@ -45,6 +46,7 @@ public class Conversao {
             formatter = NumberFormat.getInstance(new Locale("en", "US"));
         }
         String moneyString = formatter.format(valor);
-        return moneyString;       
+        return moneyString;
+        
     }
 }

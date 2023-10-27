@@ -1,4 +1,3 @@
-
 package br.com.curso.controller.cidade;
 
 import br.com.curso.dao.CidadeDAO;
@@ -11,25 +10,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @WebServlet(name = "CidadeListar", urlPatterns = {"/CidadeListar"})
 public class CidadeListar extends HttpServlet {
 
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=iso-8859-1");
         try{
             GenericDAO dao = new CidadeDAO();
             request.setAttribute("cidades", dao.listar());
-            request.getRequestDispatcher("/cadastros/cidade/cidade.jsp").forward(request, response);
-        }catch(Exception ex){
-            System.out.println("Problemas no Servlet ListarCidade! Erro: "+ ex.getMessage());
+            request.getRequestDispatcher("/cadastros/cidade/cidade.jsp")
+                    .forward(request, response);
+        } catch (Exception ex){
+            System.out.println("Problemas no Servlet ao Listar" 
+                    + "Cidades! Erro: " + ex.getMessage());
             ex.printStackTrace();
         }
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    
+    
+        // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

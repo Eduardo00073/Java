@@ -1,4 +1,3 @@
-
 package br.com.curso.controller.despesa;
 
 import br.com.curso.dao.DespesaDAO;
@@ -11,23 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @WebServlet(name = "DespesaCarregar", urlPatterns = {"/DespesaCarregar"})
 public class DespesaCarregar extends HttpServlet {
-
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=iso-8859-1");
-        int iddespesa = Integer.parseInt(request.getParameter("iddespesa"));
-        try{
+        int idDespesa = Integer.parseInt(request.getParameter("idDespesa"));
+        try {
             GenericDAO dao = new DespesaDAO();
-            request.setAttribute("despesa", dao.carregar(iddespesa));
-            request.getRequestDispatcher("cadastros/despesa/despesacadastrar.jsp").forward(request, response);
-        }catch(Exception ex){
-            System.out.println("Problemas na Servlet Carregar Despesa! Erro " + ex.getMessage());
-            ex.printStackTrace();
-        }
+            request.setAttribute("despesa", dao.carregar(idDespesa));            
+            request.getRequestDispatcher("cadastros/despesa/despesaCadastrar.jsp").forward(request, response);
+        } catch (Exception e) {
+            System.out.println("Problema na Servelet carrregar despesa!Erro: " + e.getMessage());
+            e.printStackTrace();
+        }    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

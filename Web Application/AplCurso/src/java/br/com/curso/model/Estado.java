@@ -1,13 +1,24 @@
+
 package br.com.curso.model;
+
+
 public class Estado {
+    
     private int idEstado;
     private String nomeEstado;
-    private String siglaEstado;
+    private String SiglaEstado;
+    
 
-    public Estado(int idEstado, String nomeEstado, String siglaEstado) {
+    public Estado() {
+        this.idEstado = 0;
+        this.nomeEstado = "";
+        this.SiglaEstado = "";
+    }
+
+    public Estado(int idEstado, String nomeEstado, String SiglaEstado) {
         this.idEstado = idEstado;
         this.nomeEstado = nomeEstado;
-        this.siglaEstado = siglaEstado;
+        this.SiglaEstado = SiglaEstado;
     }
 
     public int getIdEstado() {
@@ -27,17 +38,13 @@ public class Estado {
     }
 
     public String getSiglaEstado() {
-        return siglaEstado;
+        return SiglaEstado;
     }
 
-    public void setSiglaEstado(String siglaEstado) {
-        this.siglaEstado = siglaEstado;
+    public void setSiglaEstado(String SiglaEstado) {
+        this.SiglaEstado = SiglaEstado;
     }
-// overlold e criação de metodos iguais so que com asinatura diferentes; classe unica 
-    public Estado() {
-        this.idEstado = 0;
-        this.nomeEstado = "";
-        this.siglaEstado ="";
-    }
+    
+    
     
 }

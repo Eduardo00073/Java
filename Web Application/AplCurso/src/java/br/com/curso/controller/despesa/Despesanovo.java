@@ -1,5 +1,7 @@
 package br.com.curso.controller.despesa;
 
+import br.com.curso.dao.DespesaDAO;
+import br.com.curso.dao.GenericDAO;
 import br.com.curso.model.Despesa;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,21 +11,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet(name = "Despesanovo", urlPatterns = {"/Despesanovo"})
-public class Despesanovo extends HttpServlet {
+@WebServlet(name = "DespesaNovo", urlPatterns = {"/DespesaNovo"})
+public class DespesaNovo extends HttpServlet {
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=iso-8859-1");
-        try{
+        try {
             Despesa oDespesa = new Despesa();
-            request.setAttribute("despesa", oDespesa);
-            request.getRequestDispatcher("cadastros/despesa/despesacadastrar.jsp").forward(request, response);
-        }catch(Exception ex){
-            System.out.println("Problemas no Servlet Nova Despesa! Erro: " + ex.getMessage());
-            ex.printStackTrace();
+            request.setAttribute("despesa", oDespesa);            
+            request.getRequestDispatcher("cadastros/despesa/despesaCadastrar.jsp").forward(request, response);
+        } catch (Exception e) {
+            System.out.println("Problema na Servelet carrregar despesa!Erro: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

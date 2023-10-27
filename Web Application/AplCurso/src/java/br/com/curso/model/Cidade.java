@@ -2,25 +2,24 @@ package br.com.curso.model;
 
 
 public class Cidade {
-    
     private int idCidade;
     private String nomeCidade;
     private Estado estado;
     private String situacao;
-    
-    
-    public Cidade(int idCidade, String nomeCidade, Estado estado, String situacao){
-    this.idCidade = idCidade;
-    this.nomeCidade = nomeCidade;
-    this.estado = estado;
-    this.situacao = situacao;
-    }
-    public Cidade(){
-        this.idCidade = 0;
-        this.nomeCidade="";
-        this.situacao ="A";
-        this.estado = new Estado();
-    }
+
+public Cidade(int idCidade, String nomeCidade, Estado estado, String situacao) {
+this.idCidade = idCidade;
+this.nomeCidade = nomeCidade;
+this.estado = estado;
+this.situacao = situacao;
+}
+
+public Cidade() {
+    this.idCidade = 0;
+    this.nomeCidade ="";
+    this.situacao="A";
+    this.estado = new Estado();
+}
 
     public int getIdCidade() {
         return idCidade;
@@ -53,4 +52,7 @@ public class Cidade {
     public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
+
+
+
 }

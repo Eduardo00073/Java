@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @WebServlet(name = "DespesaListar", urlPatterns = {"/DespesaListar"})
 public class DespesaListar extends HttpServlet {
 
@@ -21,8 +20,8 @@ public class DespesaListar extends HttpServlet {
             GenericDAO dao = new DespesaDAO();
             request.setAttribute("despesas", dao.listar());
             request.getRequestDispatcher("/cadastros/despesa/despesa.jsp").forward(request, response);
-        }catch(Exception ex){
-            System.out.println("Problemas no Sevlet ao Listar Despesa! Erro: " + ex.getMessage());
+        } catch (Exception ex){
+            System.out.println("Problemas no Servlet ao Listar Estados! Erro: " + ex.getMessage());
             ex.printStackTrace();
         }
     }

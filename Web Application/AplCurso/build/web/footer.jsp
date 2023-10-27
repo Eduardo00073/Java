@@ -5,14 +5,13 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Eduardo Junior Alcântara da Silva 2023</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+<footer class="sticky-footer" style="background-color: transparent; background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%); background-size: cover;">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto text-white">
+            <span>Copyright &copy; Eduardo Junior Alcântara da Silva 2023</span>
+        </div>
+    </div>
+</footer>
 
         </div>
         <!-- End of Content Wrapper -->

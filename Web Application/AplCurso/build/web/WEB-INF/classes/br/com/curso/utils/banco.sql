@@ -27,3 +27,53 @@ create table despesa(
     valorpago numeric(15,2),
     imagemdocumento text
 );
+
+create table pessoa (
+    idpessoa serial primary key,
+    nome varchar(100) not null,
+    cpfcnpj varchar(14) not null unique,
+    datanascimento date,
+    idcidade int,
+    login varchar(20),
+    senha varchar(20),
+    foto text,
+    constraint fk_cidade foreign key (idcidade) references cidade
+);
+
+insert into pessoa (nome, cpfcnpj, datanascimento, idcidade, login, senha, foto) values('adm', '42745947001', '01-01-2020', 1, 'adm', '123',null);
+
+create table administrador(
+    idadministrador serial primary key,
+    idpessoa int unique,
+    situacao varchar(1),
+    permitelogin varchar(1),
+    constraint fk_administrador_pessoa foreign key (idpessoa) references pessoa
+);
+
+insert into administrador (idpessoa,situacao,permitelogin)values(1,'A','S');
+
+create table cliente(
+    idcliente serial primary key,
+    idpessoa int unique,
+    observacao varchar(100),
+    situacao varchar(1),
+    permitelogin varchar(1),
+    constraint fk_cliente_pessoa foreign key (idpessoa) references pessoa
+);
+
+create table fornecedor(
+    idfornecedor serial primary key,
+    idpessoa int unique,
+    enderecoweb varchar(100),
+    situacao varchar(1),
+    permitelogin varchar(1),
+    constraint fk_fornecedor_pessoa foreign key (idpessoa) references pessoa
+);
+
+create or replace view usuario as
+select p.idpessoa, p.nome, p.cpfcnpj, p.login, p.senha, c.idcliente as id, 'Cliente' as tipo from pessoa p, cliente c
+where c.idpessoa = p.idpessoa and c.situacao = 'A' and c.permitelogin = 'S'
+union 
+select p.idpessoa, p.nome, p.cpfcnpj, p.login, p.senha, f.idfornecedor as id, 'Fornecedor' as tipo from pessoa p, fornecedor f where f.idpessoa = p.idpessoa and f.situacao = 'A' and f.permitelogin = 'S' 
+union
+select p.idpessoa, p.nome, p.cpfcnpj, p.login, p.senha, a.idadministrador as id, 'Administrador' as tipo from pessoa p, administrador a where a.idpessoa = p.idpessoa and a.situacao = 'A' and a.permitelogin = 'S'

@@ -1,39 +1,40 @@
+
 package br.com.curso.model;
 
 import br.com.curso.utils.Conversao;
 import java.util.Date;
 
 public class Despesa {
-    private int iddespesa;
+    private int idDespesa;
     private String descricao;
-    private Date datadocumento;
-    private double valordespesa;
-    private double valorpago;
-    private String imagemdocumento;
+    private Date dataDocumento;
+    private double valorDespesa;
+    private double valorPago;
+    private String imagemDocumento;
 
     public Despesa() {
-        this.iddespesa = 0;
-        this.descricao = "";
-        this.datadocumento = Conversao.dataAtual();
-        this.valordespesa = 0.0;
-        this.valorpago = 0.0;
+        idDespesa = 0;
+        descricao = "";
+        valorDespesa = 0;
+        valorPago = 0;
+        dataDocumento = Conversao.dataAtual();
     }
 
-    public Despesa(int iddespesa, String descricao, Date datadocumento, double valordespesa, double valorpago, String imagemdocumento) {
-        this.iddespesa = iddespesa;
+    public Despesa(int idDespesa, String descricao, Date dataDocumento, double valorDespesa, double valorPago, String imagemDocumento) {
+        this.idDespesa = idDespesa;
         this.descricao = descricao;
-        this.datadocumento = datadocumento;
-        this.valordespesa = valordespesa;
-        this.valorpago = valorpago;
-        this.imagemdocumento = imagemdocumento;
+        this.dataDocumento = dataDocumento;
+        this.valorDespesa = valorDespesa;
+        this.valorPago = valorPago;
+        this.imagemDocumento = imagemDocumento;
     }
 
-    public int getIddespesa() {
-        return iddespesa;
+    public int getIdDespesa() {
+        return idDespesa;
     }
 
-    public void setIddespesa(int iddespesa) {
-        this.iddespesa = iddespesa;
+    public void setIdDespesa(int idDespesa) {
+        this.idDespesa = idDespesa;
     }
 
     public String getDescricao() {
@@ -44,37 +45,38 @@ public class Despesa {
         this.descricao = descricao;
     }
 
-    public Date getDatadocumento() {
-        return datadocumento;
+    public Date getDataDocumento() {
+        return dataDocumento;
     }
 
-    public void setDatadocumento(Date datadocumento) {
-        this.datadocumento = datadocumento;
+    public void setDataDocumento(Date dataDocumento) {
+        this.dataDocumento = dataDocumento;
     }
 
-    public double getValordespesa() {
-        return valordespesa;
+    public double getValorDespesa() {
+        return valorDespesa;
     }
 
-    public void setValordespesa(double valordespesa) {
-        this.valordespesa = valordespesa;
+    public void setValorDespesa(double valorDespesa) {
+        this.valorDespesa = valorDespesa;
     }
 
-    public double getValorpago() {
-        return valorpago;
+    public double getValorPago() {
+        return valorPago;
     }
 
-    public void setValorpago(double valorpago) {
-        this.valorpago = valorpago;
+    public void setValorPago(double valorPago) {
+        this.valorPago = valorPago;
     }
 
-    public String getImagemdocumento() {
-        return imagemdocumento;
+    public String getImagemDocumento() {
+        return imagemDocumento;
     }
 
-    public void setImagemdocumento(String imagemdocumento) {
-        this.imagemdocumento = imagemdocumento;
+    public void setImagemDocumento(String imagemDocumento) {
+        this.imagemDocumento = imagemDocumento;
     }
+    
     
     
 }

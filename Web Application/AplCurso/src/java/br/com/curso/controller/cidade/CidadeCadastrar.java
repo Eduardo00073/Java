@@ -4,6 +4,7 @@ import br.com.curso.dao.CidadeDAO;
 import br.com.curso.dao.GenericDAO;
 import br.com.curso.model.Cidade;
 import br.com.curso.model.Estado;
+import br.com.curso.model.Cidade;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,43 +15,29 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "CidadeCadastrar", urlPatterns = {"/CidadeCadastrar"})
 public class CidadeCadastrar extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        int idCidade = Integer.parseInt(request.getParameter("idCidade"));
-        int idEstado = Integer.parseInt(request.getParameter("idestado"));
-        String nomecidade = request.getParameter("nomeCidade");
-        String situacao = request.getParameter("situacao");
+        response.setContentType("text/html;charset=iso-8859-1");
         String mensagem = null;
-        
         try{
-            Cidade oCidade = new Cidade();
-            oCidade.setIdCidade(idCidade);
-            oCidade.setNomeCidade(nomecidade);
-            oCidade.setSituacao(situacao);
-            oCidade.setEstado(new Estado(idEstado,"",""));
-            
-            GenericDAO dao = new CidadeDAO();
-            if (dao.cadastrar(oCidade)) {
-                response.getWriter().write("1");
-            }else{
-                response.getWriter().write("0");
-            }
-        }catch(Exception ex){
-            System.out.println("Problemas no servlet CadastrarCidade! Erro: " + ex.getMessage());
-            ex.printStackTrace();
-        }
+        int idCidade = Integer.parseInt(request.getParameter("idcidade"));
+        int idEstado = Integer.parseInt(request.getParameter("idestado"));
+        String nomeCidade = request.getParameter("nomecidade");
+        String situacao = request.getParameter("situacao");
+        Estado oEstado = new Estado();
+        oEstado.setIdEstado(idEstado);
+        Cidade oCidade = new Cidade(idCidade, nomeCidade, oEstado, situacao);
+        CidadeDAO dao = new CidadeDAO();
         
+        if(dao.cadastrar(oCidade)){
+            response.getWriter().write("1");
+        }else{
+            response.getWriter().write("0");
+              }
+            } catch (Exception e) {
+                System.out.println("Problemas no servelet Cadastrar Cidade!Erro: " + e.getMessage());
+                e.printStackTrace();
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -2,40 +2,34 @@ package br.com.curso.controller.cidade;
 
 import br.com.curso.dao.CidadeDAO;
 import br.com.curso.dao.EstadoDAO;
+import br.com.curso.dao.GenericDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @WebServlet(name = "CidadeCarregar", urlPatterns = {"/CidadeCarregar"})
 public class CidadeCarregar extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=iso-8859-1");
         try{
             int idCidade = Integer.parseInt(request.getParameter("idCidade"));
             CidadeDAO oCidadeDAO = new CidadeDAO();
             request.setAttribute("cidade", oCidadeDAO.carregar(idCidade));
-            EstadoDAO oEstadoDAO = new EstadoDAO();
-            request.setAttribute("estados", oEstadoDAO.listar());
-            
+            GenericDAO oEstadoDAO = new EstadoDAO();
+            List<Object> estados = oEstadoDAO.listar();
+            request.setAttribute("estados", estados);
             request.getRequestDispatcher("/cadastros/cidade/cidadeCadastrar.jsp").forward(request, response);
-        }catch(Exception ex){
-            System.out.println("Erro ao carregar cidade " + ex.getMessage());
+        } 
+        catch (Exception ex) 
+        {
+            System.out.println("Erro carregar cidade "+ex.getMessage());
             ex.printStackTrace();
         }
     }

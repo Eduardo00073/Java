@@ -10,28 +10,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @WebServlet(name = "DespesaExcluir", urlPatterns = {"/DespesaExcluir"})
 public class DespesaExcluir extends HttpServlet {
-
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=iso-8859-1");
-        int iddespesa = Integer.parseInt(request.getParameter("iddespesa"));
-        String msg = null;
-        try{
+        int idDespesa = Integer.parseInt(request.getParameter("idDespesa"));
+        String mensagem = null;
+        try {
             GenericDAO dao = new DespesaDAO();
-            if(dao.excluit(iddespesa)){
+            if(dao.excluir(idDespesa)){
                 response.getWriter().write("1");
             }else{
                 response.getWriter().write("0");
             }
-        }catch(Exception ex){
-            System.out.println("Problemas no Servlet Excluir Despesa! Erro" + ex.getMessage());
-            ex.printStackTrace();
+        } catch (Exception e){
+            System.out.println("Problemas na Servelet Excluir Despesa!Erro: " + e.getMessage());
+            e.printStackTrace();
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -1,2 +1,26 @@
-/Web Application/CliniCareSys/nbproject/private/
-/Web Application/CliniCareSys/build/
+# Java Build artifacts
+*.class
+*.jar
+*.war
+*.ear
+target/
+build/
+dist/
+
+# NetBeans
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Eclipse & IntelliJ
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+
+# OS & Temp
+Thumbs.db
+.DS_Store

@@ -94,3 +94,15 @@ AplCurso/
 ---
 
 <p align="center"><i>Material didático desenvolvido como parte dos meus estudos e atuações em Desenvolvimento Full Stack e Docência em TI.</i></p>
+
+---
+
+## ⭐ Gostou do projeto?
+
+Se este projeto te ajudou, deixe uma estrela — isso ajuda outros desenvolvedores a encontrarem o repositório.
+
+### 🔗 Outros projetos relacionados
+
+📚 [Books API](https://github.com/Eduardo00073/books-api) — API REST em Spring Boot com JWT para gestão de livros.
+
+📖 [Library Spring Boot](https://github.com/Eduardo00073/library-spring-boot) — projeto Spring Boot para cadastro e gestão de livros.
